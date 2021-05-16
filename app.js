@@ -14,6 +14,7 @@ async function app(state, update, view){
     //FORM (ask)
     const value = await inputForm(model)
     const updateModel = update(value['billAmount'],value['tipPercent'], model)
+    
     state = {
         ...state,
         model: updateModel,
