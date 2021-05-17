@@ -35,7 +35,7 @@ function inputForm(model){
                 return true
             } 
             else{
-                return 'incorrect number, the number must be high that 0'
+                return 'incorrect number, the number must be greater than 0'
                 }
             }
         },{
@@ -50,7 +50,7 @@ function inputForm(model){
                     return true
                 }
                 else{
-                    return 'incorrect number, percent mas be high that 0'
+                    return 'incorrect number, percent must be bigger than 0'
                 }
             } 
         }

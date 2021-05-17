@@ -9,4 +9,3 @@ const state = {
 }
 
 app(state, update, view)
-//console.log("hola");
