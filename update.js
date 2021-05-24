@@ -1,23 +1,65 @@
-function calculated_tipPercent(billAmount,tipPercent){
-    const resultado = ((billAmount*tipPercent))/100
-    return resultado
-}
-
-
-function update(value_1,value_2, model){
-    const {billAmount} = model
-    const {tipPercent} = model
-    const {tip} = model
-    const {total} = model
-    const new_Tip = calculated_tipPercent(value_1, value_2)
-    const new_Total = (Number(value_1)+new_Tip)
-    return{
-        ...model,
-        billAmount:Number(value_1).toFixed(2), tipPercent:Number(value_2).toFixed(2),
-        tip: new_Tip.toFixed(2), total: new_Total.toFixed(2)
+function convert_temp(t_conv, t_Unit1, t_Unit2){
+    if(t_Unit1 == 'Fahrenheit'){
+        //Fahrenheit To ...
+        if(t_Unit2 == 'Celsius') {
+            return ((Number(t_conv)-32)*(5/9))
+        }
+        else if(t_Unit2 == 'Kelvin') {
+            return (Number(t_conv)-32)*5/9 + 273.15
+        }
+        else {
+            return Number(t_conv)
+        }
+    }
+    else if(t_Unit1 == 'Celsius'){
+        //Celsius To ...
+        if(t_Unit2 == 'Fahrenheit') {
+            return ((Number(t_conv)*9/5)+32)
+            }
+        else if(t_Unit2 == 'Kelvin') {
+            return (Number(t_conv) + 273.15)
+        }
+        else {
+            return Number(t_conv)
+        }
+    }
+    else if(t_Unit1 == 'Kelvin'){
+        //Kelvin To ...
+        if(t_Unit2 == 'Fahrenheit') {
+            return (Number((t_conv)*9) - (273.15*(9/5)) + 32)
+        }
+        else if(t_Unit2 == 'Celsius') {
+            return (Number(t_conv) - 273.15)
+        }
+        else {
+            return Number(t_conv)
+        }
     }
 }
 
-module.exports = {
-    update
+
+function update(source,t_conv, t_Unit1, t_Unit2, model){
+    console.log("hola estoy en udate")
+    console.log(source)
+    console.log(t_conv)
+    if(source.toLowerCase()  === 'y'){
+        return{
+            ...model,
+            leftValue: Number(t_conv),
+            leftUnit: t_Unit1,
+            rightValue: Number(convert_temp(t_conv, t_Unit1, t_Unit2)),
+            rightUnit: t_Unit2
+        }
+    }
+    
+    else if(source.toLowerCase()  === 'n'){
+        return{
+            ...model,
+            leftValue: Number(convert_temp(t_conv, t_Unit1, t_Unit2)),
+            leftUnit: t_Unit2,
+            rightValue: Number(t_conv),
+            rightUnit: t_Unit1
+        }
+    }
 }
+module.exports = {update}

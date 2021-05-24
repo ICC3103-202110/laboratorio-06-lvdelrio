@@ -1,8 +1,9 @@
 initModel = {
-    billAmount:0,
-    tipPercent:0,
-    tip:0,
-    total:0
+    Source: '(Y/n)',
+    leftValue:0,
+    leftUnit:0,
+    rightValue:0,
+    rightUnit: 0
 }
 
 module.exports = {
