@@ -39,7 +39,6 @@ function convert_temp(t_conv, t_Unit1, t_Unit2){
 
 
 function update(source,t_conv, t_Unit1, t_Unit2, model){
-    console.log("hola estoy en udate")
     console.log(source)
     console.log(t_conv)
     if(source.toLowerCase()  === 'y'){
